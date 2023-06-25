@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  jobmanager:
+    image: flink:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - flink-network
+    environment:
+      FLINK_PROPERTIES: "jobmanager.rpc.address: jobmanager"
+    command: jobmanager
+    tty: true
+    
+  taskmanager:
+    image: flink:latest
+    networks:
+      - flink-network
+    environment:
+      FLINK_PROPERTIES: "jobmanager.rpc.address: jobmanager"
+    command: taskmanager
+    tty: true
+
+networks:
+  flink-network:
