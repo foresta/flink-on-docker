@@ -3,6 +3,7 @@ version: "3"
 services:
   jobmanager:
     image: flink:latest
+    container_name: flink-jobmanager
     ports:
       - "8081:8081"
     networks:
@@ -14,6 +15,7 @@ services:
     
   taskmanager:
     image: flink:latest
+    container_name: flink-taskmanager
     networks:
       - flink-network
     environment:
